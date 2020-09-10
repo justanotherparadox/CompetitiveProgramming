@@ -1,24 +1,25 @@
 #include <iostream>
-#include<climits>
 using namespace std;
 
-void selection_sort(int a[], int n)
+void insertion_sort(int a[], int n)
 {
-	for(int i=0;i<=n-2;i++)
+	for(int i=1;i<=n-1;i++)
     {
-        int min=INT_MAX;
-        int x=-1;
-        for(int j=i;j<=n-1;j++)
+        int key=a[i];
+        int j=i-1;
+        while(j>=0)
         {
-            if(a[j]<min)
+            if(a[j]>key)
             {
-                min=a[j];
-                x=j;
+                a[j+1]=a[j];
+                j--;
+            }
+            else if(a[j]<key)
+            {
+                break;
             }
         }
-        int y=a[x];
-        a[x]=a[i];
-        a[i]=y;
+        a[j+1]=key;
     }
 }
 
@@ -37,10 +38,12 @@ int main()
     	cin>>a[i];
     }
 
-    selection_sort(a,n);
+    insertion_sort(a,n);
     for(int i=0;i<n;i++)
     {
     	cout<<a[i]<<" ";
     }
+
+
     return 0;
 }

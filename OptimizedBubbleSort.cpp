@@ -1,25 +1,26 @@
 #include <iostream>
-#include<climits>
 using namespace std;
 
-void selection_sort(int a[], int n)
+void bubble_sort(int a[], int n)
 {
-	for(int i=0;i<=n-2;i++)
-    {
-        int min=INT_MAX;
-        int x=-1;
-        for(int j=i;j<=n-1;j++)
+	for(int j=1;j<=n-1;j++)
+	{
+        bool sorted=true;
+		for(int i=0;i<=n-1-j;i++)
+		{
+			if(a[i]>a[i+1])
+			{
+				int x=a[i];
+				a[i]=a[i+1];
+				a[i+1]=x;
+                sorted=false;
+			}
+		}
+        if(sorted)
         {
-            if(a[j]<min)
-            {
-                min=a[j];
-                x=j;
-            }
+            break;
         }
-        int y=a[x];
-        a[x]=a[i];
-        a[i]=y;
-    }
+	}
 }
 
 int main() 
@@ -37,10 +38,12 @@ int main()
     	cin>>a[i];
     }
 
-    selection_sort(a,n);
+    bubble_sort(a,n);
     for(int i=0;i<n;i++)
     {
     	cout<<a[i]<<" ";
     }
+
+
     return 0;
 }
